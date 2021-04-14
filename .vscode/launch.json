@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: create_kitti_infos",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/pcdet/datasets/kitti/kitti_dataset.py",
+            "console": "integratedTerminal",
+            "args": [
+                "create_kitti_infos",
+                "tools/cfgs/dataset_configs/kitti_dataset.yaml"
+            ]
+        },
+        {
+            "name": "Python: test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/tools/test.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--cfg_file", "tools/cfgs/kitti_models/CaDDN.yaml",
+                "--batch_size", "4",
+                "--ckpt", "output/caddn.pth"
+            ]
+        },
+    ]
+}

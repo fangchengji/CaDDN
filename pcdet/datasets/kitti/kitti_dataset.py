@@ -9,9 +9,9 @@ import numpy as np
 from skimage import io
 import skimage.transform
 
-from ...ops.roiaware_pool3d import roiaware_pool3d_utils
-from ...utils import box_utils, calibration_kitti, common_utils, object3d_kitti
-from ..dataset import DatasetTemplate
+from pcdet.ops.roiaware_pool3d import roiaware_pool3d_utils
+from pcdet.utils import box_utils, calibration_kitti, common_utils, object3d_kitti
+from pcdet.datasets.dataset import DatasetTemplate
 
 
 class KittiDataset(DatasetTemplate):
@@ -30,7 +30,7 @@ class KittiDataset(DatasetTemplate):
         self.split = self.dataset_cfg.DATA_SPLIT[self.mode]
         self.root_split_path = self.root_path / ('training' if self.split != 'test' else 'testing')
 
-        split_dir = self.root_path / 'ImageSets' / (self.split + '.txt')
+        split_dir = self.root_path / (self.split + '.txt')
         self.sample_id_list = [x.strip() for x in open(split_dir).readlines()] if split_dir.exists() else None
 
         self.kitti_infos = []
@@ -61,7 +61,7 @@ class KittiDataset(DatasetTemplate):
         self.split = split
         self.root_split_path = self.root_path / ('training' if self.split != 'test' else 'testing')
 
-        split_dir = self.root_path / 'ImageSets' / (self.split + '.txt')
+        split_dir = self.root_path / (self.split + '.txt')
         self.sample_id_list = [x.strip() for x in open(split_dir).readlines()] if split_dir.exists() else None
 
     def get_lidar(self, idx):
